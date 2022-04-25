@@ -4248,7 +4248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mindCloudImage: {fileID: 871015742198356229}
-  _liquidWithColor: {fileID: 138000739858381118}
+  _liquidImage: {fileID: 138000739858381118}
   _currentSkin: {fileID: 870068450196186246}
   _skinList:
   - {fileID: 869475552631773482}
@@ -4269,6 +4269,7 @@ MonoBehaviour:
   - {fileID: 870236176794522832}
   - {fileID: 869407406700607132}
   - {fileID: 870103038683532954}
+  _startPoint: {fileID: 0}
 --- !u!1 &7115524342771967973
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Ingredient : MonoBehaviour
         _rigidbody.isKinematic = true;
 
         DOTween.Sequence()
-            .Append(transform.DOJump(position, 1f, 1, 1f).SetEase(Ease.InSine))
+            .Append(transform.DOJump(position, 0.5f, 1, 1f).SetEase(Ease.InSine))
             .Join(transform.DORotate(Vector3.up * 180, 1f))
             .AppendCallback(() => _rigidbody.isKinematic = false);
     }

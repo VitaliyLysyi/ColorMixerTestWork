@@ -1,31 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class JustAGuy : MonoBehaviour
 {
     [SerializeField] private GameObject _mindCloudImage;
-    [SerializeField] private Image _liquidWithColor;
+    [SerializeField] private Image _liquidImage;
     [SerializeField] private GameObject _currentSkin;
-    [SerializeField] private List<GameObject> _skinList; 
+    [SerializeField] private List<GameObject> _skinList;
+    [SerializeField] private Transform _startPoint;
 
     public void Init(Color color)
     {
-        _liquidWithColor.color = color;
-        _mindCloudImage.SetActive(false);
+        _liquidImage.color = color;
+        HideCloud();
         SetRandomSkin();
     }
 
     private void Start()
     {
-        StartCoroutine(Enter());
+        StartCoroutine(SceneEnter());
     }
 
-    private IEnumerator Enter()
+    private IEnumerator SceneEnter()
     {
+        DOTween.Sequence()
+            .Append(transform.DOMove(_startPoint.position, 0.5f));
         yield return new WaitForSeconds(1f);
-        _mindCloudImage.SetActive(true);
+        ShowCloud();
     }
 
     private void SetRandomSkin()
@@ -33,6 +37,11 @@ public class JustAGuy : MonoBehaviour
         _currentSkin.SetActive(false);
 
         int randomSkin = Random.Range(0, _skinList.Count);
-        _skinList[randomSkin].SetActive(true);
+        _currentSkin = _skinList[randomSkin];
+        _currentSkin.SetActive(true);
     }
+
+    public void ShowCloud() => _mindCloudImage.SetActive(true);
+
+    public void HideCloud() => _mindCloudImage.SetActive(false);
 }
